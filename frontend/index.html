@@ -70,14 +70,28 @@
           <fieldset class="entry-form__fields">
             <legend class="entry-form__legend">Данные матча</legend>
             <div class="field">
-              <label class="field__label" for="home-team">Хозяева *</label>
-              <input class="field__control" id="home-team" name="homeTeam" type="text"
-                minlength="2" maxlength="80" placeholder="Португалия" required />
+              <label class="field__label" for="ronaldo-team">Команда Роналду *</label>
+              <select class="field__control" id="ronaldo-team" name="ronaldoTeam" required>
+                <option value="">Выберите команду</option>
+                <option value="Спортинг">Спортинг</option>
+                <option value="Манчестер Юнайтед">Манчестер Юнайтед</option>
+                <option value="Реал Мадрид">Реал Мадрид</option>
+                <option value="Ювентус">Ювентус</option>
+                <option value="Аль-Наср">Аль-Наср</option>
+                <option value="Португалия">Португалия</option>
+              </select>
             </div>
             <div class="field">
-              <label class="field__label" for="away-team">Гости *</label>
-              <input class="field__control" id="away-team" name="awayTeam" type="text"
+              <label class="field__label" for="opponent">Соперник *</label>
+              <input class="field__control" id="opponent" name="opponent" type="text"
                 minlength="2" maxlength="80" placeholder="Испания" required />
+            </div>
+            <div class="field">
+              <label class="field__label" for="ronaldo-side">Где играла команда Роналду *</label>
+              <select class="field__control" id="ronaldo-side" name="ronaldoSide" required>
+                <option value="home">Дома — хозяева</option>
+                <option value="away">В гостях</option>
+              </select>
             </div>
             <div class="field">
               <label class="field__label" for="match-date">Дата матча *</label>

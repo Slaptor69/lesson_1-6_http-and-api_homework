@@ -16,6 +16,9 @@ const cancelEditButton = form.querySelector('[data-action="cancel-edit"]');
 const formStatus = document.querySelector('[data-ui="form-status"]');
 const formTitle = document.querySelector("#form-title");
 const formKicker = document.querySelector('[data-ui="form-kicker"]');
+const ronaldoTeamSelect = form.elements.namedItem("ronaldoTeam");
+const opponentInput = form.elements.namedItem("opponent");
+const ronaldoTeams = new Set([...ronaldoTeamSelect.options].map((option) => option.value).filter(Boolean));
 const competitions = {
   "world-cup": "Чемпионат мира",
   "world-cup-qualifiers": "Отбор на чемпионат мира",
@@ -142,6 +145,7 @@ function createMatchCard(match) {
   title.textContent = `${match.homeTeam} — ${match.awayTeam}`;
   const details = document.createElement("dl");
   details.className = "card__meta";
+  addDetail(details, "Команда Роналду", match.ronaldoTeam || "Не указана");
   addDetail(details, "Дата", formatDate(match.date));
   addDetail(details, "Турнир", competitions[match.competition] ?? match.competition);
   addDetail(details, "Счёт", match.score);
@@ -249,7 +253,8 @@ async function loadMatches() {
 function resetEditor() {
   editingMatch = null;
   form.reset();
-  for (const name of ["homeTeam", "awayTeam"]) form.elements.namedItem(name).setCustomValidity("");
+  ronaldoTeamSelect.setCustomValidity("");
+  opponentInput.setCustomValidity("");
   formTitle.textContent = "Добавить в коллекцию";
   formKicker.textContent = "Новый матч";
   formStatus.hidden = true;
@@ -261,17 +266,24 @@ function startEditing(match) {
   resetEditor();
   editingMatch = { ...match };
   for (const field of formFields.querySelectorAll("[name]")) field.value = match[field.name] ?? "";
+  const away = match.ronaldoTeam === match.awayTeam;
+  form.elements.namedItem("ronaldoSide").value = away ? "away" : "home";
+  opponentInput.value = away ? match.homeTeam : match.awayTeam;
   formTitle.textContent = "Редактировать матч";
   formKicker.textContent = "Изменение записи";
   updateControls();
-  form.elements.namedItem("homeTeam").focus();
+  ronaldoTeamSelect.focus();
 }
 
 function readMatchForm() {
   const data = new FormData(form);
+  const team = data.get("ronaldoTeam");
+  const opponent = data.get("opponent").trim();
+  const home = data.get("ronaldoSide") === "home";
   return {
-    homeTeam: data.get("homeTeam").trim(),
-    awayTeam: data.get("awayTeam").trim(),
+    ronaldoTeam: team,
+    homeTeam: home ? team : opponent,
+    awayTeam: home ? opponent : team,
     date: data.get("date"),
     competition: data.get("competition"),
     score: data.get("score").trim(),
@@ -285,9 +297,14 @@ async function submitMatch(event) {
   event.preventDefault();
   if (submitting || loading || deletingId !== null) return;
   const match = readMatchForm();
-  for (const name of ["homeTeam", "awayTeam"]) {
-    form.elements.namedItem(name).setCustomValidity(match[name].length < 2 ? "Введите название команды: минимум 2 символа без пробелов по краям." : "");
+  ronaldoTeamSelect.setCustomValidity(ronaldoTeams.has(match.ronaldoTeam) ? "" : "Выберите команду Роналду из списка.");
+  const opponent = opponentInput.value.trim();
+  let opponentError = "";
+  if (opponent.length < 2) opponentError = "Введите название соперника: минимум 2 символа без пробелов по краям.";
+  else if (opponent.toLocaleLowerCase("ru-RU") === match.ronaldoTeam.toLocaleLowerCase("ru-RU")) {
+    opponentError = "Команда Роналду и соперник должны отличаться.";
   }
+  opponentInput.setCustomValidity(opponentError);
   if (!form.reportValidity()) return;
   const editing = editingMatch !== null;
   const changes = editing
@@ -358,7 +375,10 @@ clearSearchButton.addEventListener("click", () => {
   loadMatches();
 });
 form.addEventListener("input", (event) => {
-  if (event.target.name === "homeTeam" || event.target.name === "awayTeam") event.target.setCustomValidity("");
+  if (event.target.name === "ronaldoTeam" || event.target.name === "opponent") {
+    ronaldoTeamSelect.setCustomValidity("");
+    opponentInput.setCustomValidity("");
+  }
   if (!submitting) formStatus.hidden = true;
 });
 cancelEditButton.addEventListener("click", resetEditor);
