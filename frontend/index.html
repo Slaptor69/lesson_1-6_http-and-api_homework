@@ -37,6 +37,18 @@
           </button>
         </div>
 
+        <div class="search">
+          <div class="field">
+            <label class="field__label" for="match-search">Найти матч</label>
+            <input class="field__control" id="match-search" type="search" maxlength="100"
+              placeholder="Команда или текст заметки" aria-describedby="search-hint" />
+            <span class="field__hint" id="search-hint">Поиск по командам и заметкам</span>
+          </div>
+          <button class="button button--secondary" type="button" data-action="clear-search" disabled>
+            Сбросить поиск
+          </button>
+        </div>
+        <p class="status" data-ui="action-status" role="status" aria-live="polite" hidden></p>
         <div class="status" data-ui="status" role="status" aria-live="polite">
           <strong class="status__title">Загрузка матчей</strong>
           <span class="status__text">Получаем коллекцию. Подождите немного.</span>
@@ -48,7 +60,7 @@
       <section class="panel panel--form" aria-labelledby="form-title">
         <div class="panel__header">
           <div>
-            <p class="panel__eyebrow">Новый матч</p>
+            <p class="panel__eyebrow" data-ui="form-kicker">Новый матч</p>
             <h2 class="panel__title" id="form-title">Добавить в коллекцию</h2>
           </div>
         </div>
@@ -111,6 +123,9 @@
           <div class="entry-form__actions">
             <button class="button button--primary" type="submit" data-action="submit">
               Сохранить матч
+            </button>
+            <button class="button button--secondary" type="button" data-action="cancel-edit" hidden>
+              Отменить редактирование
             </button>
           </div>
         </form>

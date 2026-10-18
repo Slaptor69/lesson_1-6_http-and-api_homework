@@ -257,6 +257,43 @@ button:disabled {
   outline-offset: 3px;
 }
 
+.search {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.search .button {
+  justify-self: start;
+}
+
+.card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.card__actions .button {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.button--danger {
+  color: var(--color-danger);
+  background: #fff2f0;
+}
+
+.card__confirmation {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-line);
+}
+
+.card__confirmation p {
+  margin: 0;
+}
+
 .entry-form {
   display: grid;
   gap: 18px;
@@ -326,6 +363,8 @@ textarea.field__control {
 
 .entry-form__actions {
   display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   justify-content: flex-end;
 }
 
