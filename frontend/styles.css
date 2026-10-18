@@ -5,8 +5,8 @@
   --color-surface: #ffffff;
   --color-soft: #f3f6fb;
   --color-line: #dce3ee;
-  --color-primary: #5b4ce2;
-  --color-primary-dark: #4436bf;
+  --color-primary: #3857d6;
+  --color-primary-dark: #2943ad;
   --color-accent: #1b9aaa;
   --color-danger: #b42318;
   --shadow: 0 22px 60px rgba(39, 49, 78, 0.11);
@@ -86,6 +86,7 @@ button:disabled {
 .workspace {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.8fr);
+  align-items: start;
   gap: 24px;
   padding: 0 24px 40px;
 }
@@ -169,7 +170,7 @@ button:disabled {
 .status {
   display: grid;
   gap: 4px;
-  margin-bottom: 18px;
+  margin: 24px 0 18px;
   padding: 16px 18px;
   border: 1px solid var(--color-line);
   border-radius: 16px;
@@ -229,10 +230,103 @@ button:disabled {
   line-height: 1.45;
 }
 
+.card__row {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.card__row dt {
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.card__row dd {
+  margin: 0;
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.card__source {
+  color: var(--color-primary-dark);
+}
+
+.card__source:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.search {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.search .button {
+  justify-self: start;
+}
+
+.card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.card__actions .button {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.button--danger {
+  color: var(--color-danger);
+  background: #fff2f0;
+}
+
+.card__confirmation {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-line);
+}
+
+.card__confirmation p {
+  margin: 0;
+}
+
 .entry-form {
   display: grid;
   gap: 18px;
   margin-top: 24px;
+}
+
+.entry-form__fields {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.entry-form__legend {
+  margin-bottom: 18px;
+  font-weight: 750;
+}
+
+.entry-form .status {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.field__hint {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.field__control:disabled {
+  opacity: 0.7;
 }
 
 .field {
@@ -269,6 +363,8 @@ textarea.field__control {
 
 .entry-form__actions {
   display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   justify-content: flex-end;
 }
 
