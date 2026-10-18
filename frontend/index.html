@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Стартовый интерфейс домашней работы по HTTP и REST API"
+      content="Любимые матчи Криштиану Роналду: счёт, голы и заметки"
     />
-    <title>API-витрина</title>
+    <title>Матчи Роналду</title>
+    <link rel="icon" href="data:," />
     <link rel="stylesheet" href="./styles.css" />
     <script src="./script.js" defer></script>
   </head>
@@ -15,10 +16,10 @@
     <header class="page-header">
       <div class="page-header__content">
         <p class="page-header__eyebrow">ДЗ 6 · HTTP и API</p>
-        <h1 class="page-header__title">API-витрина</h1>
+        <h1 class="page-header__title">Матчи Роналду</h1>
         <p class="page-header__lead">
-          Выберите тему, замените демонстрационный ресурс и свяжите этот интерфейс
-          с собственным REST API.
+          Хет-трики, решающие голы и тот самый удар через себя.
+          Коллекция любимых матчей с заметками и ссылками на отчёты.
         </p>
       </div>
     </header>
@@ -28,7 +29,7 @@
         <div class="panel__header">
           <div>
             <p class="panel__eyebrow">Коллекция</p>
-            <h2 class="panel__title" id="collection-title">Объекты из API</h2>
+            <h2 class="panel__title" id="collection-title">Сохранённые матчи</h2>
           </div>
 
           <button class="button button--secondary" type="button" data-action="reload">
@@ -36,58 +37,18 @@
           </button>
         </div>
 
-        <p class="endpoint">
-          Endpoint:
-          <code class="endpoint__value" data-ui="endpoint">http://localhost:3000/items</code>
-        </p>
-
         <div class="status" data-ui="status" role="status" aria-live="polite">
-          <strong class="status__title">Ожидание подключения</strong>
-          <span class="status__text">Реализуйте первый GET-запрос в script.js.</span>
+          <strong class="status__title">Загрузка матчей</strong>
+          <span class="status__text">Получаем коллекцию. Подождите немного.</span>
         </div>
 
-        <div class="collection" data-ui="collection" aria-live="polite"></div>
-      </section>
-
-      <section class="panel panel--form" aria-labelledby="form-title">
-        <div class="panel__header">
-          <div>
-            <p class="panel__eyebrow">Новая запись</p>
-            <h2 class="panel__title" id="form-title">Добавить объект</h2>
-          </div>
-        </div>
-
-        <form class="entry-form" data-form="entry">
-          <div class="field">
-            <label class="field__label" for="entry-title">Название</label>
-            <input
-              class="field__control"
-              id="entry-title"
-              name="title"
-              type="text"
-              minlength="2"
-              placeholder="Замените подсказку под свою тему"
-              required
-            />
-          </div>
-
-          <p class="entry-form__hint">
-            Добавьте остальные поля своей модели. Всего должно быть не меньше четырех
-            содержательных свойств помимо id.
-          </p>
-
-          <div class="entry-form__actions">
-            <button class="button button--primary" type="submit" data-action="submit">
-              Отправить в API
-            </button>
-          </div>
-        </form>
+        <div class="collection" data-ui="collection" hidden></div>
       </section>
     </main>
 
     <footer class="page-footer">
       <p class="page-footer__text">
-        Источник результата — ответы API. Не дублируйте содержимое db.json в JavaScript.
+        Любимые матчи Криштиану Роналду
       </p>
     </footer>
   </body>

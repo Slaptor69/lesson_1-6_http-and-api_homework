@@ -5,8 +5,8 @@
   --color-surface: #ffffff;
   --color-soft: #f3f6fb;
   --color-line: #dce3ee;
-  --color-primary: #5b4ce2;
-  --color-primary-dark: #4436bf;
+  --color-primary: #3857d6;
+  --color-primary-dark: #2943ad;
   --color-accent: #1b9aaa;
   --color-danger: #b42318;
   --shadow: 0 22px 60px rgba(39, 49, 78, 0.11);
@@ -85,7 +85,7 @@ button:disabled {
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.8fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   padding: 0 24px 40px;
 }
@@ -169,7 +169,7 @@ button:disabled {
 .status {
   display: grid;
   gap: 4px;
-  margin-bottom: 18px;
+  margin: 24px 0 18px;
   padding: 16px 18px;
   border: 1px solid var(--color-line);
   border-radius: 16px;
@@ -227,6 +227,33 @@ button:disabled {
   margin: 0;
   color: var(--color-muted);
   line-height: 1.45;
+}
+
+.card__row {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.card__row dt {
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.card__row dd {
+  margin: 0;
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.card__source {
+  color: var(--color-primary-dark);
+}
+
+.card__source:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
 }
 
 .entry-form {
