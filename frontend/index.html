@@ -44,6 +44,77 @@
 
         <div class="collection" data-ui="collection" hidden></div>
       </section>
+
+      <section class="panel panel--form" aria-labelledby="form-title">
+        <div class="panel__header">
+          <div>
+            <p class="panel__eyebrow">Новый матч</p>
+            <h2 class="panel__title" id="form-title">Добавить в коллекцию</h2>
+          </div>
+        </div>
+
+        <form class="entry-form" data-form="entry">
+          <p class="entry-form__hint">Поля со знаком * обязательны.</p>
+          <fieldset class="entry-form__fields">
+            <legend class="entry-form__legend">Данные матча</legend>
+            <div class="field">
+              <label class="field__label" for="home-team">Хозяева *</label>
+              <input class="field__control" id="home-team" name="homeTeam" type="text"
+                minlength="2" maxlength="80" placeholder="Португалия" required />
+            </div>
+            <div class="field">
+              <label class="field__label" for="away-team">Гости *</label>
+              <input class="field__control" id="away-team" name="awayTeam" type="text"
+                minlength="2" maxlength="80" placeholder="Испания" required />
+            </div>
+            <div class="field">
+              <label class="field__label" for="match-date">Дата матча *</label>
+              <input class="field__control" id="match-date" name="date" type="date" required />
+            </div>
+            <div class="field">
+              <label class="field__label" for="competition">Турнир *</label>
+              <select class="field__control" id="competition" name="competition" required>
+                <option value="">Выберите турнир</option>
+                <option value="world-cup">Чемпионат мира</option>
+                <option value="world-cup-qualifiers">Отбор на чемпионат мира</option>
+                <option value="champions-league">Лига чемпионов</option>
+                <option value="la-liga">Ла Лига</option>
+                <option value="other">Другой турнир</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="score">Счёт матча *</label>
+              <input class="field__control" id="score" name="score" type="text"
+                pattern="[0-9]{1,2}:[0-9]{1,2}" maxlength="5" placeholder="3:3"
+                aria-describedby="score-hint" required />
+              <span class="field__hint" id="score-hint">Хозяева:гости, например 3:3</span>
+            </div>
+            <div class="field">
+              <label class="field__label" for="goals">Голы Роналду *</label>
+              <input class="field__control" id="goals" name="goals" type="number"
+                min="0" max="99" step="1" placeholder="3" required />
+            </div>
+            <div class="field">
+              <label class="field__label" for="note">Чем запомнился матч</label>
+              <textarea class="field__control" id="note" name="note" maxlength="500"
+                placeholder="Решающий штрафной или красивый гол"></textarea>
+            </div>
+            <div class="field">
+              <label class="field__label" for="source">Ссылка на отчёт о матче</label>
+              <input class="field__control" id="source" name="source" type="url"
+                pattern="https?://.+" maxlength="500" placeholder="https://…"
+                aria-describedby="source-hint" />
+              <span class="field__hint" id="source-hint">Необязательно. Ссылка с http:// или https://</span>
+            </div>
+          </fieldset>
+          <p class="status" data-ui="form-status" role="status" aria-live="polite" hidden></p>
+          <div class="entry-form__actions">
+            <button class="button button--primary" type="submit" data-action="submit">
+              Сохранить матч
+            </button>
+          </div>
+        </form>
+      </section>
     </main>
 
     <footer class="page-footer">
